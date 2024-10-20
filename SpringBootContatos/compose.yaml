@@ -1,0 +1,18 @@
+services:
+  db:
+    container_name: oracle
+    image: "projectfiapspringdocker"
+    ports:
+      - "1521:1521"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_pass
+
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - PROFILE=dev
+      - DATABASE_URL=jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
+      - DATABASE_USER=RM99065
+      - DATABASE_PWD=100900
